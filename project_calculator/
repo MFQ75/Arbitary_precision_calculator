@@ -1,0 +1,41 @@
+#include "inverted.h"
+
+int main(int argc,char *argv[])
+{
+	if(argc != 4)
+	{
+		printf("Error : Invalid arguments\n");
+		printf("Usage : ./a.out 1234 + 1234\n");
+	}
+	else
+	{
+		Dlist *head1 = NULL;
+		Dlist *head2 = NULL;
+		Dlist *head3 = NULL;
+		Dlist *tail1 = NULL;
+		Dlist *tail2 = NULL;
+		Dlist *tail3 = NULL;
+		if(!read_and_validate(argv,&head1,&head2,&tail1,&tail2))
+			return 1;
+		int num1 = atoi(argv[1]);
+		int num2 = atoi(argv[3]);
+		char *ch = argv[2];
+		switch(*ch)
+		{
+			case '+' : add(head1,head2,tail1,tail2,&head3,&tail3);
+				   break;
+			case '-' : sub(num1,num2,tail1,tail2,&head3,&tail3);
+				   break;
+			case '*' :
+			case '/' :
+		}
+		Dlist *temp = head3;
+		if(num1 < num2)
+			printf("-");
+		while(temp)
+		{
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+	}
+}
